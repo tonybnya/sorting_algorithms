@@ -1,6 +1,5 @@
 #include "sort.h"
 
-/* void selectioovoidn_sort(int *array, size_t size); */
 void swap(int *first, int *second);
 
 /**
@@ -32,4 +31,18 @@ void selection_sort(int *array, size_t size)
 			print_array(array, size);
 		}
 	}
+}
+
+/**
+ * swap - swap two integers using pointers
+ * @first: pointer to the first integer
+ * @second: pointer to the second integer
+ */
+void swap(int *first, int *second)
+{
+	int temp;
+
+	temp = *first;
+	*first = *second;
+	*second = temp;
 }
