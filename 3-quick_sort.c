@@ -39,32 +39,32 @@ void swap(int *first, int *second)
  */
 void sort(int *array, int low, int high, int size)
 {
-        int i, p, w;
+	int i, p, w;
 
-        if (low < high)
-        {
-                p = high;
-                w = low;
+	if (low < high)
+	{
+		p = high;
+		w = low;
 
-                for (i = low; i < high; i++)
-                {
-                        if (array[i] < array[p])
-                        {
-                                if (i != w)
-                                {
-                                        swap(&array[i], &array[w]);
-                                        print_array(array, size);
-                                }
-                                w++;
-                        }
-                }
-                if (w != p && array[w] != array[p])
-                {
-                        swap(&array[w], &array[p]);
-                        print_array(array, size);
-                }
+		for (i = low; i < high; i++)
+		{
+			if (array[i] < array[p])
+			{
+				if (i != w)
+				{
+					swap(&array[i], &array[w]);
+					print_array(array, size);
+				}
+				w++;
+			}
+		}
+		if (w != p && array[w] != array[p])
+		{
+			swap(&array[w], &array[p]);
+			print_array(array, size);
+		}
 
-                sort(array, low, w - 1, size);
-                sort(array, w + 1, high, size);
-        }
+		sort(array, low, w - 1, size);
+		sort(array, w + 1, high, size);
+	}
 }
