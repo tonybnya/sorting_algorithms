@@ -15,6 +15,11 @@ void quick_sort(int *array, size_t size)
 	sort(array, 0, size - 1, size);
 }
 
+/**
+ * swap - swap to integers using pointers
+ * @first: pointer to the first integer
+ * @second: pointer to the second integer
+ */
 void swap(int *first, int *second)
 {
 	int temp;
@@ -24,6 +29,17 @@ void swap(int *first, int *second)
 	*second = temp;
 }
 
+/**
+ * partition - helper function to divide/partition items in array
+ * less than or greater than a pivot
+ *
+ * @array: Array of integers
+ * @low: lower index
+ * @high: higher index
+ * @size: size of the @array
+ *
+ * Return: index incremented
+ */
 int partition(int array[], int low, int high, int size)
 {
 	int pivot;
@@ -47,6 +63,15 @@ int partition(int array[], int low, int high, int size)
 	return (i + 1);
 }
 
+/**
+ * sort - helper function to perform recursive sorting process
+ * on partitions less or greater than the pivot
+ *
+ * @array: Array to be sorted
+ * @low: lower index
+ * @high: higher index
+ * @size: size of the @array
+ */
 void sort(int array[], int low, int high, int size)
 {
 	if (low < high)
