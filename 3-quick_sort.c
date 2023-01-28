@@ -1,8 +1,7 @@
 #include "sort.h"
 
 void swap(int *first, int *second);
-int partition(int array[], int low, int high, int size);
-void sort(int array[], int low, int high, int size);
+void sort(int *array, int low, int high, int size);
 
 /**
  * quick_sort - Quick Sort Algorithm
@@ -30,40 +29,6 @@ void swap(int *first, int *second)
 }
 
 /**
- * partition - helper function to divide/partition items in array
- * less than or greater than a pivot
- *
- * @array: Array of integers
- * @low: lower index
- * @high: higher index
- * @size: size of the @array
- *
- * Return: index incremented
- */
-int partition(int array[], int low, int high, int size)
-{
-	int pivot;
-	int i, j;
-
-	pivot = array[high];
-	i = (low - 1);
-
-	for (j = low; j <= high - 1; j++)
-	{
-		if (array[j] <= pivot)
-		{
-			i++;
-			swap(&array[i], &array[j]);
-			print_array(array, size);
-		}
-	}
-	swap(&array[i + 1], &array[high]);
-	print_array(array, size);
-
-	return (i + 1);
-}
-
-/**
  * sort - helper function to perform recursive sorting process
  * on partitions less or greater than the pivot
  *
@@ -72,13 +37,34 @@ int partition(int array[], int low, int high, int size)
  * @high: higher index
  * @size: size of the @array
  */
-void sort(int array[], int low, int high, int size)
+void sort(int *array, int low, int high, int size)
 {
-	if (low < high)
-	{
-		int pi = partition(array, low, high, size);
+        int i, p, w;
 
-		sort(array, low, pi - 1, size);
-		sort(array, pi + 1, high, size);
-	}
+        if (low < high)
+        {
+                p = high;
+                w = low;
+
+                for (i = low; i < high; i++)
+                {
+                        if (array[i] < array[p])
+                        {
+                                if (i != w)
+                                {
+                                        swap(&array[i], &array[w]);
+                                        print_array(array, size);
+                                }
+                                w++;
+                        }
+                }
+                if (w != p && array[w] != array[p])
+                {
+                        swap(&array[w], &array[p]);
+                        print_array(array, size);
+                }
+
+                sort(array, low, w - 1, size);
+                sort(array, w + 1, high, size);
+        }
 }
